@@ -62,6 +62,7 @@ class _LoginState extends State<Login> {
     // final _passwordController = TextEditingController();
     return Scaffold(
       // appBar: AppBar(),
+      backgroundColor: Color.fromRGBO(231, 227, 210, 1.0),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -72,11 +73,20 @@ class _LoginState extends State<Login> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 100,
+                  ),
                   Container(
-                    child: Text('Login'),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                          color: Colors.deepOrange,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
+                    padding: const EdgeInsets.only(top: 10.0),
                     child: TextFormField(
                       validator: MultiValidator([
                         EmailValidator(errorText: "Not A Valid Email"),
@@ -91,7 +101,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
+                    padding: const EdgeInsets.only(top: 10.0),
                     child: TextFormField(
                       style: TextStyle(),
                       validator: validatePassword,
@@ -103,7 +113,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
+                    padding: const EdgeInsets.only(top: 10.0),
                     child: ElevatedButton(
                         onPressed: validate, child: Text('login')),
                   )

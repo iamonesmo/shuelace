@@ -82,6 +82,7 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(231, 227, 210, 1.0),
       appBar: AppBar(
         title: Text('Account'),
       ),

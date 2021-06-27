@@ -42,6 +42,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(231, 227, 210, 1.0),
       // appBar: AppBar(),
       body: SingleChildScrollView(
         child: Center(
@@ -53,11 +54,18 @@ class _RegisterState extends State<Register> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 100,
+                  ),
                   Container(
-                    child: Text('Register'),
+                    child: Text('Register',
+                        style: TextStyle(
+                            color: Colors.deepOrange,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold)),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                         validator: MultiValidator(
                             [RequiredValidator(errorText: "Required*")]),
@@ -80,7 +88,7 @@ class _RegisterState extends State<Register> {
                             border: OutlineInputBorder(), labelText: "Email")),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                         style: TextStyle(),
                         controller: _passwordController,
@@ -90,7 +98,7 @@ class _RegisterState extends State<Register> {
                             labelText: "Password")),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: ElevatedButton(
                         onPressed: validate, child: Text('Create Account')),
                   )

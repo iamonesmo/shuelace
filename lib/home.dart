@@ -1,9 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'accountScreen.dart';
 import 'customTiles.dart';
+
+var finalEmail;
+var fullName;
+var address;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,6 +18,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  // ignore: must_call_super
+  void initState() {
+    getEmail();
+  }
+
+  // get email sharedPreferences
+  getEmail() async {
+    SharedPreferences _sp = await SharedPreferences.getInstance();
+    var obtainedEmail = _sp.getString('email');
+    setState(() {
+      finalEmail = obtainedEmail;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Icon(Icons.person_outline),
-                          Text('phone number goes here'),
+                          Text('$finalEmail'),
                           Icon(Icons.arrow_right_outlined)
                         ],
                       ),
@@ -76,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(),
       body: Center(
         child: Container(
-          child: Text('Body goes here'),
+          child: Text('Welcome $finalEmail'),
         ),
       ),
     );

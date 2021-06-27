@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shuelace/accountScreen.dart';
+import 'package:shuelace/home.dart';
 
 class AddAddressScreen extends StatefulWidget {
   const AddAddressScreen({Key? key}) : super(key: key);
@@ -11,6 +13,12 @@ class AddAddressScreen extends StatefulWidget {
 class _AddAddressScreenState extends State<AddAddressScreen> {
   @override
   Widget build(BuildContext context) {
+    //CONTROLLERS
+    final _fullNameController = TextEditingController();
+    final _hNumberConroller = TextEditingController();
+    final _localityController = TextEditingController();
+    final _pincodeController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Address'),
@@ -20,22 +28,43 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           children: [
             TextFormField(
               style: TextStyle(),
+              controller: _fullNameController,
               decoration: InputDecoration(hintText: 'Full Name'),
             ),
             TextFormField(
               style: TextStyle(),
+              controller: _hNumberConroller,
               decoration: InputDecoration(hintText: 'House no/Building Name'),
             ),
             TextFormField(
               style: TextStyle(),
+              controller: _localityController,
               decoration: InputDecoration(hintText: 'Locality'),
             ),
             TextFormField(
               style: TextStyle(),
+              controller: _pincodeController,
               decoration: InputDecoration(hintText: 'Pincode'),
             ),
             TextButton(
-                onPressed: () {
+                onPressed: () async {
+                  final SharedPreferences _sp =
+                      await SharedPreferences.getInstance();
+                  _sp.setString('fullName', _fullNameController.text);
+                  _sp.setString('houseNumber', _hNumberConroller.text);
+                  _sp.setString('locality', _localityController.text);
+                  _sp.setString('pincode', _pincodeController.text);
+
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  var obtainedName = prefs.getString('fullName');
+                  var obtainedAddress = prefs.getString('locality');
+                  setState(() {
+                    fullName = obtainedName;
+                    address = obtainedAddress;
+                    AccountScreen();
+                  });
+                  print(address + " in add address screen");
                   Navigator.pop(context, MaterialPageRoute(builder: (context) {
                     return AccountScreen();
                   }));

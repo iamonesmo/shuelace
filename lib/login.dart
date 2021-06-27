@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'home.dart';
 
 class Login extends StatelessWidget {
@@ -6,6 +7,8 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _emailController = TextEditingController();
+    // final _passwordController = TextEditingController();
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -16,6 +19,7 @@ class Login extends StatelessWidget {
               child: Text('Login'),
             ),
             TextFormField(
+              controller: _emailController,
               style: TextStyle(),
               decoration: InputDecoration(hintText: 'Email'),
             ),
@@ -24,10 +28,14 @@ class Login extends StatelessWidget {
               decoration: InputDecoration(hintText: 'password'),
             ),
             ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  final SharedPreferences sharedPreferences =
+                      await SharedPreferences.getInstance();
+                  sharedPreferences.setString('email', _emailController.text);
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return HomeScreen();
                   }));
+                  print(finalEmail + ' from login');
                 },
                 child: Text('login'))
           ],

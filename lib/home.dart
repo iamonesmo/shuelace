@@ -9,6 +9,7 @@ import 'customTiles.dart';
 var finalEmail;
 var fullName;
 var address;
+var password;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -28,8 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
   getEmail() async {
     SharedPreferences _sp = await SharedPreferences.getInstance();
     var obtainedEmail = _sp.getString('email');
+    var obtainedName = _sp.getString('fullName');
     setState(() {
       finalEmail = obtainedEmail;
+      fullName = obtainedName;
     });
   }
 
@@ -93,7 +96,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       backgroundColor: Colors.blueGrey[50],
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Shuelace'),
+      ),
       body: Center(
         child: Container(
           child: Text('Welcome $finalEmail'),

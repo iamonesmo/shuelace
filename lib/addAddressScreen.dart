@@ -14,7 +14,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
   @override
   Widget build(BuildContext context) {
     //CONTROLLERS
-    final _fullNameController = TextEditingController();
+    final _fullNameController = TextEditingController(text: '$fullName');
     final _hNumberConroller = TextEditingController();
     final _localityController = TextEditingController();
     final _pincodeController = TextEditingController();

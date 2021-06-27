@@ -91,6 +91,7 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                         style: TextStyle(),
+                        obscureText: true,
                         controller: _passwordController,
                         validator: validatePassword,
                         decoration: InputDecoration(

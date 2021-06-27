@@ -35,13 +35,13 @@ class _LoginState extends State<Login> {
     if (formKey.currentState!.validate()) {
       //
       if (_passwordController.text == password &&
-          _emailController == finalEmail) {
+          _emailController.text == finalEmail) {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return HomeScreen();
         }));
       } else {
         Fluttertoast.showToast(
-            msg: "Wrong Password Or Email. Try Creating Account First",
+            msg: "Wrong Password or Email. Try creating an acount first.",
             textColor: Colors.red,
             backgroundColor: Colors.red,
             toastLength: Toast.LENGTH_LONG);
